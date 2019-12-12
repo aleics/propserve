@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { ObserveOn } from '@observer/observe';
 
 class Test {
-  bar: number = 0;
   @ObserveOn<number>('bar') foo!: Observable<number>;
+  bar?: number;
 }
 
 const test = new Test();
