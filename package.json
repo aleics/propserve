@@ -1,0 +1,14 @@
+{
+  "name": "observer",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Aleix Casanovas (aleics)",
+  "license": "MIT",
+  "devDependencies": {
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.3"
+  }
+}
