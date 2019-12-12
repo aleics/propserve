@@ -1,27 +1,19 @@
 import { Observable, combineLatest } from 'rxjs';
-import { map, first } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ObserveOn } from '@observer/observe';
 
 class Test {
   @ObserveOn<number>('first')
   private first$!: Observable<number>;
-  private first?: number;
+  first?: number;
 
   @ObserveOn<number>('second')
   private second$!: Observable<number>;
-  private second?: number;
+  second?: number;
 
-  public sum$ = combineLatest(this.first$, this.second$).pipe(
+  sum$ = combineLatest(this.first$, this.second$).pipe(
     map(([a, b]) => a + b)
   );
-
-  public setFirst(value: number) {
-    this.first = value;
-  }
-
-  public setSecond(value: number) {
-    this.second = value;
-  }
 }
 
 const test = new Test();
@@ -30,5 +22,5 @@ test.sum$.subscribe(result => {
 })
 
 
-test.setFirst(2);
-test.setSecond(3);
+test.first = 2;
+test.second = 3;
