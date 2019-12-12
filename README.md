@@ -1,13 +1,13 @@
 # observer
-**observer** let's you subscribe to changes from other properties.
+**observer** let's you subscribe to changes of other properties of the same class by using decorators.
 
 ## Usage
-Using the [`@ObserveOn`](https://github.com/aleics/observer/blob/397fc239a3bbcc8242313141f057c0d42f8d3c5e/src/observe.ts#L3) decorator, `observer` notifies you on changes from other properties:
+Using the [`@ObserveOn`](https://github.com/aleics/observer/blob/397fc239a3bbcc8242313141f057c0d42f8d3c5e/src/observe.ts#L3) decorator, an observer property is defined. The observer is able to subscribe to changes of other properties.
 
 ```ts
 class Test {
-  bar: number = 0;
   @ObserveOn<number>('bar') foo!: Observable<number>;
+  bar?: number;
 }
 
 const test = new Test();
