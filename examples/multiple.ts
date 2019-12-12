@@ -18,7 +18,7 @@ class Test {
 
 const test = new Test();
 test.sum$.subscribe(result => {
-  console.log("Sum: " + result);
+  console.log('Sum: ' + result);
 })
 
 

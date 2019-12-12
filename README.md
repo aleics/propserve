@@ -12,7 +12,7 @@ class Test {
 
 const test = new Test();
 test.foo.subscribe(value => {
-  console.log("Received: " + value);
+  console.log('Received: ' + value);
 });
 
 test.bar = 3;
