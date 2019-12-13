@@ -5,11 +5,11 @@ import { ObserveOn } from '@observer/observe';
 class Test {
   @ObserveOn<number>('first')
   private first$!: Observable<number>;
-  first?: number;
+  first: number = 2;
 
   @ObserveOn<number>('second')
   private second$!: Observable<number>;
-  second?: number;
+  second: number = 2;
 
   sum$ = combineLatest(this.first$, this.second$).pipe(
     map(([a, b]) => a + b)
@@ -21,6 +21,4 @@ test.sum$.subscribe(result => {
   console.log('Sum: ' + result);
 })
 
-
-test.first = 2;
 test.second = 3;

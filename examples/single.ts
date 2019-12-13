@@ -6,7 +6,7 @@ class Test {
   @ObserveOn<number>('bar')
   foo!: Observable<number>;
 
-  bar?: number;
+  bar: number = 1;
 
   double$ = this.foo.pipe(
     map(value => value * 2)
