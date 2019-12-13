@@ -1,6 +1,6 @@
 import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ObserveOn } from '@observer/observe';
+import { ObserveOn } from 'observer/observe';
 
 class Test {
   @ObserveOn<number>('first')
