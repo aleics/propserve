@@ -1,7 +1,7 @@
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 export function ObserveOn<T>(observedKey: string) {
-  const listener = new Subject<T>();
+  const listener = new ReplaySubject<T>(1);
 
   return (target: any, key: string) => {
     let observedValue: T = target[observedKey];
