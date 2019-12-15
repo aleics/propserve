@@ -25,6 +25,17 @@ test('creates observer property from class', () => {
   expect(target.fooChanges$ instanceof Observable).toEqual(true);
 });
 
+test('getter remains unmodified', () => {
+  const target = new SingleProperty<number>();
+
+  const observeHandler = ObserveOn<number>('foo');
+  observeHandler(target, 'fooChanges$');
+
+  target.foo = 2;
+
+  expect(target.foo).toEqual(2);
+});
+
 test('notifies single change', (done) => {
   const observeHandler = ObserveOn<number>('foo');
 
