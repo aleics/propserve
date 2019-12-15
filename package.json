@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "ci": "npm run build && npm run test"
+    "lint": "eslint '*/**/*.ts'",
+    "ci": "npm run lint && npm run test && npm run build"
   },
   "jest": {
     "preset": "ts-jest",
@@ -17,6 +18,9 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "eslint": "^6.7.2",
     "jest": "^24.9.0",
     "ts-jest": "^24.2.0",
     "tsconfig-paths": "^3.9.0",
