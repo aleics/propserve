@@ -7,13 +7,61 @@ Using the [`@ObserveOn`](https://github.com/aleics/observer/blob/397fc239a3bbcc8
 ```ts
 class Test {
   @ObserveOn<number>('bar') foo!: Observable<number>;
-  bar?: number;
+  bar: number = 1;
 }
 
 const test = new Test();
 test.foo.subscribe(value => {
   console.log('Received: ' + value);
 });
-
-test.bar = 3;
 ```
+
+### Use case: Angular
+The main motivation of this library was the lack to provide lifecycle hooks as `Observable` in the Angular framework. Specifically for `OnChanges`. The different component's lifecycle phases are provided by using callback methods. For instance:
+
+```ts
+@Component({
+  selector: 'some',
+  templateUrl: './some.component.html'
+})
+export class SomeComponent implements OnChanges {
+  @Input() foo: number;
+  @Input() bar: number;
+
+  result: number;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.foo || changes.bar) {
+      const sum = this.foo * this.bar;
+      if (sum > 0) {
+        this.result = sum;
+      }
+    }
+  }
+}
+```
+
+Two inputs are multiplied, and if the result is higher than `0`, the result is displayed.
+
+Using **observer**, you can react to the changes of a single or multiple component's properties, and use the full power of reactive streams:
+
+```ts
+@Component({
+  selector: 'some',
+  templateUrl: './some.component.html'
+})
+export class SomeComponent {
+  @Input() foo: number;
+  @ObserveOn<number>('foo') fooChanges$!: Observable<number>;
+
+  @Input() bar: number;
+  @ObserveOn<number>('bar') barChanges$!: Observable<number>;
+
+  result$ = combineLatest(this.fooChanges$, this.barChanges$).pipe(
+    map(([first, second]) => first * second),
+    filter(value => value > 0)
+  );
+}
+```
+
+By using the Angular `async` pipe in the template, you can extract the value of `result$` once the `Observable` returns a value. Thus the handling of both properties' changes is much simplified and functional-like.
