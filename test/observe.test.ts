@@ -16,7 +16,7 @@ class DoubleProperty<T> {
 }
 
 test('creates observer property from any', () => {
-  const target: any = {};
+  const target: { fooChanges$?: Observable<number> } = {};
   const observeHandler = ObserveOn('foo');
   observeHandler(target, 'fooChanges$');
 
