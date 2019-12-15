@@ -8,14 +8,14 @@ import { ReplaySubject } from 'rxjs';
  *
  * @param observedKey The key of the property that is being observed.
  */
-export function ObserveOn<T>(observedKey: string) {
+export function ObserveOn<T>(observedKey: string): PropertyDecorator {
   const listener = new ReplaySubject<T>(1);
-  return (target: any, key: string) => {
+  return (target: any, key: string | symbol): void => {
     let observedValue: T = target[observedKey];
     target[key] = listener.asObservable();
 
-    const getter = () => observedValue;
-    const setter = (value: T) => {
+    const getter = (): T => observedValue;
+    const setter = (value: T): void => {
       listener.next(value);
       observedValue = value;
     };
