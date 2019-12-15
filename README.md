@@ -17,7 +17,7 @@ test.foo.subscribe(value => {
 ```
 
 ### Use case: Angular
-The main motivation of this library was the lack to provide lifecycle hooks as `Observable` in the Angular framework. Specifically for `OnChanges`. The different component's lifecycle phases are provided by using callback methods. For instance:
+The main motivation of this library was the lack to provide [lifecycle hooks](https://angular.io/guide/lifecycle-hooks) as [`Observable`](https://rxjs.dev/guide/observable) in the Angular framework. Specifically for [`OnChanges`](https://angular.io/api/core/OnChanges). The different component's lifecycle phases are provided by using callback methods. For instance:
 
 ```ts
 @Component({
@@ -64,4 +64,4 @@ export class SomeComponent {
 }
 ```
 
-By using the Angular `async` pipe in the template, you can extract the value of `result$` once the `Observable` returns a value. Thus the handling of both properties' changes is much simplified and functional-like.
+By using the Angular [`async`](https://angular.io/api/common/AsyncPipe) pipe in the template, you can extract the value of `result$` once the `Observable` returns a value. Thus, the handling of both properties' changes is much simplified and functional-like.
