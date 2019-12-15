@@ -5,7 +5,9 @@
   "author": "Aleix Casanovas (aleics)",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "build": "tsc",
+    "test": "jest",
+    "ci": "npm run build && npm run test"
   },
   "jest": {
     "preset": "ts-jest",
