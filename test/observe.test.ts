@@ -24,3 +24,17 @@ test('creates observer property from class', () => {
   expect(target.fooChanges$).toBeDefined();
   expect(target.fooChanges$ instanceof Observable).toEqual(true);
 });
+
+test('notifies single change', (done) => {
+  const observeHandler = ObserveOn<number>('foo');
+
+  const target = new SingleProperty<number>();
+  observeHandler(target, 'fooChanges$');
+
+  target.foo = 2;
+
+  target.fooChanges$.subscribe(value => {
+    expect(value).toEqual(2);
+    done();
+  });
+});
