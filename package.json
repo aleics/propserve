@@ -8,16 +8,9 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "postbuild": "cp package.json LICENSE README.md dist",
-    "test": "jest",
+    "test": "jest --config jestconfig.json",
     "lint": "eslint '*/**/*.ts'",
     "ci": "npm run clean && npm run lint && npm run test && npm run build"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "moduleNameMapper": {
-      "^@propserve/(.*)$": "<rootDir>/src/$1"
-    },
-    "collectCoverage": true
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",

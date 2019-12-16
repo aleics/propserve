@@ -1,0 +1,7 @@
+{
+  "preset": "ts-jest",
+  "moduleNameMapper": {
+    "^@propserve/(.*)$": "<rootDir>/src/$1"
+  },
+  "collectCoverage": true
+}
