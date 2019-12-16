@@ -16,7 +16,8 @@
     "preset": "ts-jest",
     "moduleNameMapper": {
       "^@propserve/(.*)$": "<rootDir>/src/$1"
-    }
+    },
+    "collectCoverage": true
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
