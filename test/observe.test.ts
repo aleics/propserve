@@ -1,4 +1,4 @@
-import { ObserveOn } from 'observer/observe';
+import { ObserveOn } from '@propserve/observe';
 import { Observable, combineLatest } from 'rxjs';
 import { first } from 'rxjs/operators';
 

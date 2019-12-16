@@ -13,7 +13,7 @@
   "jest": {
     "preset": "ts-jest",
     "moduleNameMapper": {
-      "^observer/(.*)$": "<rootDir>/src/$1"
+      "^@propserve/(.*)$": "<rootDir>/src/$1"
     }
   },
   "devDependencies": {

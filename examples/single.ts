@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ObserveOn } from 'observer/observe';
+import { ObserveOn } from '@propserve/observe';
 import { map } from 'rxjs/operators';
 
 class Test {
