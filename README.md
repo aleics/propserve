@@ -17,7 +17,9 @@ test.foo.subscribe(value => {
 ```
 
 ### Use case: Angular
-The main motivation of this library was the lack to provide [lifecycle hooks](https://angular.io/guide/lifecycle-hooks) as [`Observable`](https://rxjs.dev/guide/observable) in the Angular framework. Specifically for [`OnChanges`](https://angular.io/api/core/OnChanges). The different component's lifecycle phases are provided by using callback methods. For instance:
+**propserve** enables the developer to follow the so called [*SIP Principle*](https://blog.strongbrew.io/the-sip-principle/), without having to re-define additional logic for the input source streams of the component.
+
+Angular lacks to provide [lifecycle hooks](https://angular.io/guide/lifecycle-hooks) as [`Observable`](https://rxjs.dev/guide/observable). Specifically for [`OnChanges`](https://angular.io/api/core/OnChanges). The different component's lifecycle phases are provided by using callback methods. For instance:
 
 ```ts
 @Component({
@@ -31,6 +33,7 @@ export class SomeComponent implements OnChanges {
   result: number;
 
   ngOnChanges(changes: SimpleChanges) {
+    // Two inputs are multiplied, and if the result is higher than `0`, the result is displayed.
     if (changes.foo || changes.bar) {
       const sum = this.foo * this.bar;
       if (sum > 0) {
@@ -40,8 +43,6 @@ export class SomeComponent implements OnChanges {
   }
 }
 ```
-
-Two inputs are multiplied, and if the result is higher than `0`, the result is displayed.
 
 Using **propserve**, you can react to the changes of a single or multiple component's properties, and use the full power of reactive streams:
 
@@ -63,5 +64,4 @@ export class SomeComponent {
   );
 }
 ```
-
-By using the Angular [`async`](https://angular.io/api/common/AsyncPipe) pipe in the template, you can extract the value of `result$` once the `Observable` returns a value. Thus, the handling of both properties' changes is much simplified and functional-like.
+Thus, the source streams from input properties are already defined as `Observable`, and can be further used for Presentation or Intermediate streams by using the Angular [`async`](https://angular.io/api/common/AsyncPipe) pipe in the template, or by further mapping it.
