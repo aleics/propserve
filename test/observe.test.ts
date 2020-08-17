@@ -1,4 +1,4 @@
-import { ObserveOn } from '@propserve/observe';
+import { Observe } from '@propserve/observe';
 import { Observable, combineLatest } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ class DoubleProperty<T> {
 
 test('creates observer property from any', () => {
   const target: { fooChanges$?: Observable<number> } = {};
-  const observeHandler = ObserveOn('foo');
+  const observeHandler = Observe('foo');
   observeHandler(target, 'fooChanges$');
 
   expect(target.fooChanges$).toBeDefined();
@@ -27,7 +27,7 @@ test('creates observer property from any', () => {
 test('creates observer property from class', () => {
   const target = new SingleProperty<number>();
 
-  const observeHandler = ObserveOn<number>('foo');
+  const observeHandler = Observe<number>('foo');
   observeHandler(target, 'fooChanges$');
 
   expect(target.fooChanges$).toBeDefined();
@@ -37,7 +37,7 @@ test('creates observer property from class', () => {
 test('getter remains unmodified', () => {
   const target = new SingleProperty<number>();
 
-  const observeHandler = ObserveOn<number>('foo');
+  const observeHandler = Observe<number>('foo');
   observeHandler(target, 'fooChanges$');
 
   target.foo = 2;
@@ -46,7 +46,7 @@ test('getter remains unmodified', () => {
 });
 
 test('notifies single change', (done) => {
-  const observeHandler = ObserveOn<number>('foo');
+  const observeHandler = Observe<number>('foo');
 
   const target = new SingleProperty<number>();
   observeHandler(target, 'fooChanges$');
@@ -60,8 +60,8 @@ test('notifies single change', (done) => {
 });
 
 test('notifies multiple change', (done) => {
-  const fooObserveHandler = ObserveOn<number>('foo');
-  const barObserveHandler = ObserveOn<number>('bar');
+  const fooObserveHandler = Observe<number>('foo');
+  const barObserveHandler = Observe<number>('bar');
 
   const target = new DoubleProperty<number>();
   fooObserveHandler(target, 'fooChanges$');
